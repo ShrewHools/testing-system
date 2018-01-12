@@ -76,3 +76,56 @@ footer {
   }
 }
 
+// user_reg
+.user_reg {
+  .form-inputs {
+    .input {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 15px;
+
+      input {
+        width: 350px;
+        text-align: center;
+      }
+    }
+  }
+}
+// end user_reg
+
+// user sign in
+.user_sign_in {
+  .form-inputs {
+    .input {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 15px;
+
+      input {
+        width: 350px;
+        text-align: center;
+      }
+    }
+  }
+}
+// end sign in
+
+// user edit
+.user_edit {
+  .form-inputs {
+    .input {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 15px;
+
+      input {
+        width: 350px;
+        text-align: center;
+      }
+    }
+  }
+}
+// end user edit
