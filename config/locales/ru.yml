@@ -1,0 +1,12 @@
+ru:
+  activerecord:
+    attributes:
+      user:
+        full_name: "ФИО"
+        group: "Номер группы"
+        current_password: "Текущий пароль"
+        email: Email
+        password: "Пароль"
+    models:
+      user: "Пользователь"
+      role: "Права доступа"
