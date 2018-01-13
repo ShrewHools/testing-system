@@ -53,7 +53,15 @@ class TestController < ApplicationController
   end
 
   def create_answer
-
+    answer = params[:answer]
+    if answer.present?
+      Answer.create(
+        user: current_user,
+        answer: answer,
+        question_id: params[:question_id],
+        test_id: params[:test_id]
+      )
+    end
   end
 
   private

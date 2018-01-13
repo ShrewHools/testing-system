@@ -1,3 +1,5 @@
+Dir[Rails.root.join('lib', 'rails_admin', '**/*.rb')].each { |file| require file }
+
 RailsAdmin.config do |config|
 
   ### Popular gems integration
