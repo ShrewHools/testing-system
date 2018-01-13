@@ -47,8 +47,7 @@ class TestController < ApplicationController
     else
       # конец теста
     end
-    # сделать метод создания ответа
-    # create_answer if params[:answer]
+    create_answer if params[:answer]
     update_setting
   end
 

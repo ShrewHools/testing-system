@@ -9,6 +9,21 @@ class Answer < ApplicationRecord
 
   before_create :check_correctness, if: proc{ |a| a.answer.present? }
 
+  rails_admin do
+    edit do
+      field :question
+      field :answer
+      field :correct
+      field :incorrect
+    end
+    show do
+      field :question
+      field :answer
+      field :correct
+      field :incorrect
+    end
+  end
+
   def similar_arrays?(array1, array2, similarity = 0.81)
     sence_changing_words = %w(не нет)
     return true if array1.sort == array2.sort
@@ -35,12 +50,10 @@ class Answer < ApplicationRecord
     answered = analize_string(answer)
     if true_answers.find{ |a| similar_arrays?(a, answered) }.present?
       self.correct = true
-      number = question.tours.first.number
-      user.test_rating.increment!("tour_#{number}")
     elsif false_answers.find{ |a| similar_arrays?(a, answered) }.present?
       self.incorrect = true
     else
-      question.update(incorrect_answer_variants: question.incorrect_answer_variants + answer)
+      question.update(incorrect_answer_variants: question.incorrect_answer_variants + [answer])
       self.incorrect = true
     end
   end

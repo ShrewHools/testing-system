@@ -14,8 +14,8 @@ class Question < ApplicationRecord
       field :incorrect_answer_variants, :pg_array
     end
     show do
-      field :body, :text_with_attachment
-      field :correct_answer, :text_with_attachment
+      field :body
+      field :correct_answer
       field :correct_answer_variants, :pg_array
       field :incorrect_answer_variants, :pg_array
     end
