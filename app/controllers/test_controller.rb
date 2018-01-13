@@ -36,4 +36,27 @@ class TestController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def next_step
+    test = current_user.tests.last
+    next_question_number = params[:last_question_number].to_i + 1
+    next_question = test.questions[next_question_number] if test
+    if next_question
+      @current_question = next_question
+    else
+      # конец теста
+    end
+    # сделать метод создания ответа
+    # create_answer if params[:answer]
+    # сделать метод обновления тест-вопроса +1 и тд
+    # update_setting
+  end
+
+  def create_answer
+
+  end
+
+  def update_setting
+
+  end
 end
