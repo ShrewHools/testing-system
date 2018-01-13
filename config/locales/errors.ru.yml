@@ -13,3 +13,7 @@ ru:
               blank: 'Пожалуйста авторизуйтесь'
             subject_id:
               blank: 'Выберите предмет тестирования'
+        question:
+          attributes:
+            subject_id:
+              blank: 'Выберите предмет'
