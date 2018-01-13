@@ -23,6 +23,8 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 
+gem 'rubocop'
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end

@@ -1,0 +1,11 @@
+<section class="test_wrapper">
+  <div class="timer">Таймер</div>
+
+  <div class="test-main">
+    <% if @current_question %>
+      <%= render partial: 'test/question', locals: { current_test: @current_test, current_question: @current_question } %>
+    <% else %>
+      <%= render partial: 'test/end_test' %>
+    <% end %>
+  </div>
+</section>

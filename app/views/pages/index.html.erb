@@ -4,8 +4,12 @@
     <h2> Тестирование будет доступено после регистрации/входа!</h2>
 
     <% if current_user %>
-      <p>Выбрать предмет тестирования(селектор)</p>
-      <p>Начать тестирование</p>
+      <%= form_tag({ controller: 'test', action: 'create' }, method: 'post', class:'test_form') do %>
+        <p>Выбрать предмет тестирования(селектор)</p>
+        <!-- сделать селектор предмета-->
+        <%#= hidden_field_tag(:subject_id, 4) %>
+        <%= submit_tag('Начать тестирование', class: '') %>
+      <% end %>
     <% else %>
       <%= link_to 'Зарегистрироваться', new_user_registration_path, class: 'btn btn-large btn-primary' %>
     <% end %>

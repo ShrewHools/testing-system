@@ -1,0 +1,19 @@
+ru:
+  activerecord:
+    errors:
+      models:
+        subject:
+          attributes:
+            name:
+              blank: 'Имя предмета не может быть пустым'
+              taken: 'Данный предмет уже существует'
+        test:
+          attributes:
+            user_id:
+              blank: 'Пожалуйста авторизуйтесь'
+            subject_id:
+              blank: 'Выберите предмет тестирования'
+        question:
+          attributes:
+            subject_id:
+              blank: 'Выберите предмет'

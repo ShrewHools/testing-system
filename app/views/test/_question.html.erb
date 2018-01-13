@@ -1,0 +1,16 @@
+<%= form_tag({ controller: 'test', action: 'next_step' }, method: 'post', class: 'ni', remote: true) do %>
+  <%= hidden_field_tag(:last_question_number, current_test.questions.index(current_question)) %>
+  <%= hidden_field_tag(:question_id, current_question.id) %>
+  <%= hidden_field_tag(:test_id, current_test.id) %>
+  <div class="question_wrap">
+    <h1>Body - <%= @current_question.body %></h1>
+  </div>
+  <div class="answer_wrapper">
+    <div class="input_block">
+      <%= text_field_tag 'answer', '', class: 'input_answer', placeholder: 'Введите ответ', autocomplete: :off, autofocus: true %>
+      <div class="input_wrapper">
+        <%= submit_tag 'Отправить', class: 'input_btn' %>
+      </div>
+    </div>
+  </div>
+<% end %>

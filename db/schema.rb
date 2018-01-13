@@ -10,10 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180112193943) do
+ActiveRecord::Schema.define(version: 20180113122503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "question_id"
+    t.string   "answer"
+    t.boolean  "correct",     default: false
+    t.boolean  "incorrect",   default: false
+    t.integer  "test_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
+    t.index ["test_id"], name: "index_answers_on_test_id", using: :btree
+    t.index ["user_id"], name: "index_answers_on_user_id", using: :btree
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer  "subject_id"
+    t.text     "body"
+    t.string   "correct_answer"
+    t.string   "correct_answer_variants",   default: [],              array: true
+    t.string   "incorrect_answer_variants", default: [],              array: true
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.index ["subject_id"], name: "index_questions_on_subject_id", using: :btree
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -23,6 +48,33 @@ ActiveRecord::Schema.define(version: 20180112193943) do
     t.datetime "updated_at"
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
     t.index ["name"], name: "index_roles_on_name", using: :btree
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "questions_count", default: 1
+  end
+
+  create_table "test_questions", force: :cascade do |t|
+    t.integer  "test_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["question_id"], name: "index_test_questions_on_question_id", using: :btree
+    t.index ["test_id"], name: "index_test_questions_on_test_id", using: :btree
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "subject_id"
+    t.integer  "last_question_number", default: -1
+    t.boolean  "end_page",             default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.index ["subject_id"], name: "index_tests_on_subject_id", using: :btree
+    t.index ["user_id"], name: "index_tests_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
