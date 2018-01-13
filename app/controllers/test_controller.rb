@@ -13,5 +13,12 @@ class TestController < ApplicationController
   end
 
   def create
+    subject = Subject.find_by(id: params[:subject_id])
+    if subject
+
+    else
+      flash[:danger] = 'Выберите предмет тестирования'
+      redirect_to root_path
+    end
   end
 end
