@@ -49,7 +49,6 @@ class TestController < ApplicationController
     end
     # сделать метод создания ответа
     # create_answer if params[:answer]
-    # сделать метод обновления тест-вопроса +1 и тд
     update_setting
   end
 
