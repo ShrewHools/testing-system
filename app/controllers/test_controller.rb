@@ -50,14 +50,24 @@ class TestController < ApplicationController
     # сделать метод создания ответа
     # create_answer if params[:answer]
     # сделать метод обновления тест-вопроса +1 и тд
-    # update_setting
+    update_setting
   end
 
   def create_answer
 
   end
 
-  def update_setting
+  private
 
+  def update_setting
+    test = current_user.tests.last
+    question = params[:last_question_number].to_i
+
+    test.update(last_question_number: question) if question > test.last_question_number
+    questions_count_subject = test.subject.questions_count
+
+    if question + 1 == questions_count_subject
+      test.update(end_page: true)
+    end
   end
 end
