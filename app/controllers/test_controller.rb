@@ -42,6 +42,7 @@ class TestController < ApplicationController
     next_question_number = params[:last_question_number].to_i + 1
     next_question = test.questions[next_question_number] if test
     if next_question
+      @current_test = test
       @current_question = next_question
     else
       # конец теста

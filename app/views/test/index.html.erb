@@ -1,3 +1,11 @@
-<h1>Test#index</h1>
-<p>Find me in app/views/test/index.html.erb</p>
-<h1>Тело вопроса - <%= @current_question.body %></h1>
+<section class="test_wrapper">
+  <div class="timer">Таймер</div>
+
+  <div class="test-main">
+    <% if @current_question %>
+      <%= render partial: 'test/question', locals: { current_test: @current_test, current_question: @current_question } %>
+    <% else %>
+      <%= render partial: 'test/end_test' %>
+    <% end %>
+  </div>
+</section>
