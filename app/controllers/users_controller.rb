@@ -1,6 +1,19 @@
 class UsersController < ApplicationController
   def statistic
-    # вписать статистику со страницы окончания теста
+    if current_user
+      statistic = current_user.statistics.find_by(id: params[:id])
+      if statistic.present?
+        @statistic = statistic
+        answers = statistic.test.answers
+        @incorrect_answers = Answer.incorrect_answers(answers)
+      else
+        flash[:danger] = 'Статистика с данным id не найдена, либо данная статистика не ваша'
+        redirect_to root_path
+      end
+    else
+      flash[:info] = 'Нужно авторизоваться'
+      redirect_to root_path
+    end
   end
 
   def statistics

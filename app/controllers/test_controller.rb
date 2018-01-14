@@ -50,6 +50,8 @@ class TestController < ApplicationController
       @current_question = next_question
     else
       @statistic = test.statistic
+      answers = test.answers
+      @incorrect_answers = Answer.incorrect_answers(answers)
     end
     create_answer if params[:answer]
     update_setting
