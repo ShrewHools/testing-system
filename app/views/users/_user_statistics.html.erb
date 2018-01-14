@@ -1,0 +1,7 @@
+<% if statistics.present? %>
+  <% statistics.each do |statistic| %>
+    <p><%= statistic.subject.name %></p>
+  <% end %>
+<% else %>
+  <p>Тестов по данному предмету не пройдено</p>
+<% end %>

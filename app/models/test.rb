@@ -38,6 +38,7 @@ class Test < ApplicationRecord
     Statistic.create(
       user: user,
       test: self,
+      subject: subject,
       questions_count: questions_count,
       corrent_answer_count: 0,
       corrent_answer_percent: 0,
