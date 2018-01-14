@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get 'pages/index'
   get '/statistics', to: 'statistics#index'
+  post '/statistics/change_subject', to: 'statistics#change_subject'
   resources :test, only: [:index, :create] do
     post 'next_step', on: :collection
     post 'update_setting', on: :collection
