@@ -7,7 +7,8 @@ class Answer < ApplicationRecord
   validates :test_id, presence: true
   validates :question_id, presence: true
 
-  before_create :check_correctness, if: proc{ |a| a.answer.present? }
+  before_create :check_correctness, if: proc { |a| a.answer.present? }
+  after_create :update_statistic, if: proc { |a| a.answer.present? && a.correct? }
 
   rails_admin do
     edit do
@@ -45,16 +46,28 @@ class Answer < ApplicationRecord
   private
 
   def check_correctness
-    true_answers = question.correct_answer_variants.map{ |a| analize_string(a) }
-    false_answers = question.incorrect_answer_variants.map{ |a| analize_string(a) }
+    true_answers = question.correct_answer_variants.map { |a| analize_string(a) }
+    false_answers = question.incorrect_answer_variants.map { |a| analize_string(a) }
     answered = analize_string(answer)
-    if true_answers.find{ |a| similar_arrays?(a, answered) }.present?
+    if true_answers.find { |a| similar_arrays?(a, answered) }.present?
       self.correct = true
-    elsif false_answers.find{ |a| similar_arrays?(a, answered) }.present?
+    elsif false_answers.find { |a| similar_arrays?(a, answered) }.present?
       self.incorrect = true
     else
       question.update(incorrect_answer_variants: question.incorrect_answer_variants + [answer])
       self.incorrect = true
+    end
+  end
+
+  def update_statistic
+    statistic = test.statistic
+    if correct
+      statistic.increment!(:corrent_answer_count)
+      corrent_answer_percent = statistic.corrent_answer_count.to_f / statistic.questions_count
+      statistic.update(corrent_answer_percent: corrent_answer_percent)
+      if statistic.corrent_answer_percent >= statistic.need_answer_percent
+        statistic.update(pass: true)
+      end
     end
   end
 end
