@@ -1,21 +1,25 @@
 <h1>Предмет - <%= subject.name %></h1>
 <% if sort_statistics.present? %>
-  <div class="ratings_wrap">
-    <div class="header">
-      <div class="position">Место</div>
-      <div class="full_name">ФИО</div>
-      <div class="avg_persent">Средний % правельных ответов</div>
-      <div class="max_persent">Лучший результат, %</div>
-    </div>
-    <% sort_statistics.each_with_index do |stat, index| %>
-      <div class="body">
-        <div class="position"><%= index + 1 %></div>
-        <div class="full_name"><%= stat[:full_name] %></div>
-        <div class="avg_persent"><%= stat[:avg_persent] %>%</div>
-        <div class="max_persent"><%= stat[:max_persent] %>%</div>
-      </div>
-    <% end %>
-  </div>
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">ФИО</th>
+        <th scope="col">Средний % правельных ответов</th>
+        <th scope="col">Лучший результат, %</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% sort_statistics.each_with_index do |stat, index| %>
+        <tr>
+          <th scope="row"><%= index + 1 %>.</th>
+          <td><%= stat[:full_name] %></td>
+          <td><%= stat[:avg_persent] %>%</td>
+          <td><%= stat[:max_persent] %>%</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% else %>
   <h1>По данному предмету статистики нет</h1>
 <% end %>

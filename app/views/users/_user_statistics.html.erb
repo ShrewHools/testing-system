@@ -8,6 +8,7 @@
         <th scope="col">Правельных ответов / всего</th>
         <th scope="col">Качество, %</th>
         <th scope="col">Тест</th>
+        <th scope="col">Дата прохождения</th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +24,7 @@
               Провален
             <% end %>
           </td>
+          <td><%= statistic.created_at %></td>
         </tr>
       <% end %>
     </tbody>
