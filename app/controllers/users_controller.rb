@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       user = User.find_by(id: params[:id])
       if current_user.id == user.id || current_user.has_role?(:admin)
         @subjects = Subject.all
-        @statistics = user.statistics
+        @statistics = user.statistics.order(:created_at)
       else
         flash[:danger] = 'Нет доступа к просмотру чужой статистики'
         redirect_to root_path
