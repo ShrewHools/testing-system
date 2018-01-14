@@ -4,8 +4,8 @@ class TestController < ApplicationController
       @current_test = current_user.tests.last
       # вывести страницу окончания теста (типа результат + кнопка пройти ещё раз)
       if @current_test
-        @end_page = @current_test.end_page? if @current_test
         @current_question = @current_test.questions[@current_test.last_question_number + 1]
+        @statistic = @current_test.statistic unless @current_question
       end
     else
       redirect_to root_path
@@ -45,7 +45,7 @@ class TestController < ApplicationController
       @current_test = test
       @current_question = next_question
     else
-      # конец теста
+      @statistic = test.statistic
     end
     create_answer if params[:answer]
     update_setting

@@ -1,12 +1,40 @@
 <section class="end_test">
-  <div class="fail">
-    <h1>Тест <span>провален</span></h1>
-    <p><span>3</span> правельных из 10</p>
-    <p>Вы набрали 53% из неободимых 80%</p>
-    <h2>Повторите следующие темы:</h2>
-    <p>- вопрос, тема + ссылка на литературу</p>
-    <p>- вопрос, тема + ссылка на литературу</p>
-    <p>- вопрос, тема + ссылка на литературу</p>
-    <p>- вопрос, тема + ссылка на литературу</p>
-  </div>
+  <% if statistic.pass? %>
+    <div class="pass">
+      <h1>Тест <span>пройден</span>. Поздравляю!
+        <span class="green">
+          <%= statistic.corrent_answer_count %>
+        </span>
+        / <%= statistic.questions_count %>
+      </h1>
+      <p>Вы набрали <%= statistic.corrent_answer_percent.round(2) * 100 %>%</p>
+
+      <!-- реализовать -->
+      <p>Повторите следующие темы: (если есть, реализовать)</p>
+
+      <%= form_tag({ controller: 'test', action: 'create' }, method: 'post', class:'test_form') do %>
+        <%= hidden_field_tag(:subject_id, statistic.test.subject_id) %>
+        <%= submit_tag('Пройти тест ещё раз', class: '') %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="fail">
+      <h1>Тест <span>провален</span></h1>
+      <p><span><%= statistic.corrent_answer_count %></span> правельных из <%= statistic.questions_count %></p>
+      <p>Вы набрали <%= statistic.corrent_answer_percent.round(2) * 100 %>% из неободимых <%= statistic.need_answer_percent * 100 %>%</p>
+
+      <!-- реализовать -->
+      <p>Реализовать</p>
+      <h2>Повторите следующие темы:</h2>
+      <p>- вопрос, тема + ссылка на литературу</p>
+      <p>- вопрос, тема + ссылка на литературу</p>
+      <p>- вопрос, тема + ссылка на литературу</p>
+      <p>- вопрос, тема + ссылка на литературу</p>
+
+      <%= form_tag({ controller: 'test', action: 'create' }, method: 'post', class:'test_form') do %>
+        <%= hidden_field_tag(:subject_id, statistic.test.subject_id) %>
+        <%= submit_tag('Пройти тест ещё раз', class: '') %>
+      <% end %>
+    </div>
+  <% end %>
 </section>
