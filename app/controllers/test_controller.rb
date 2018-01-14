@@ -2,10 +2,14 @@ class TestController < ApplicationController
   def index
     if current_user
       @current_test = current_user.tests.last
-      # вывести страницу окончания теста (типа результат + кнопка пройти ещё раз)
       if @current_test
-        @current_question = @current_test.questions[@current_test.last_question_number + 1]
-        @statistic = @current_test.statistic unless @current_question
+        if @current_test.end_page?
+          @statistic = @current_test.statistic
+          answers = @current_test.answers
+          @incorrect_answers = Answer.incorrect_answers(answers)
+        else
+          @current_question = @current_test.questions[@current_test.last_question_number + 1]
+        end
       end
     else
       redirect_to root_path

@@ -25,6 +25,15 @@ class Answer < ApplicationRecord
     end
   end
 
+  def self.incorrect_answers(answers)
+    incorrect_answers = []
+    answers.each do |answer|
+      next if answer.correct?
+      incorrect_answers << answer
+    end
+    return incorrect_answers
+  end
+
   def similar_arrays?(array1, array2, similarity = 0.81)
     sence_changing_words = %w(не нет)
     return true if array1.sort == array2.sort

@@ -9,8 +9,12 @@
       </h1>
       <p>Вы набрали <%= statistic.corrent_answer_percent.round(2) * 100 %>%</p>
 
-      <!-- реализовать -->
-      <p>Повторите следующие темы: (если есть, реализовать)</p>
+      <% if incorrect_answers %>
+        <h2>Повторите следующие темы:</h2>
+        <% incorrect_answers.each do |incorrect_answer| %>
+          <p><%= incorrect_answer.answer %></p>
+        <% end %>
+      <% end %>
 
       <%= form_tag({ controller: 'test', action: 'create' }, method: 'post', class:'test_form') do %>
         <%= hidden_field_tag(:subject_id, statistic.test.subject_id) %>
@@ -23,13 +27,17 @@
       <p><span><%= statistic.corrent_answer_count %></span> правельных из <%= statistic.questions_count %></p>
       <p>Вы набрали <%= statistic.corrent_answer_percent.round(2) * 100 %>% из неободимых <%= statistic.need_answer_percent * 100 %>%</p>
 
-      <!-- реализовать -->
-      <p>Реализовать</p>
-      <h2>Повторите следующие темы:</h2>
-      <p>- вопрос, тема + ссылка на литературу</p>
-      <p>- вопрос, тема + ссылка на литературу</p>
-      <p>- вопрос, тема + ссылка на литературу</p>
-      <p>- вопрос, тема + ссылка на литературу</p>
+      <% if incorrect_answers %>
+        <h2>Повторите следующие темы:</h2>
+        <% incorrect_answers.each do |incorrect_answer| %>
+          <p>
+            Тема - <%= incorrect_answer.question.theme %>.
+            <% if incorrect_answer.question.literature.present? %>
+              Литература - <%= incorrect_answer.question.literature %>
+            <% end %>
+          </p>
+        <% end %>
+      <% end %>
 
       <%= form_tag({ controller: 'test', action: 'create' }, method: 'post', class:'test_form') do %>
         <%= hidden_field_tag(:subject_id, statistic.test.subject_id) %>

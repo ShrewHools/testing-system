@@ -1,6 +1,26 @@
 <% if statistics.present? %>
-  <% statistics.each do |statistic| %>
-    <p><%= statistic.subject.name %></p>
+  <h1>Предмет - <%= statistics.first.subject.name %></h1>
+  <p>Последние 100 тестов сортированных по дате</p>
+  <p style="color:red;">отсортировать по дате + при клике на тест переход на страницу теста в end_page</p>
+  <% statistics.each_with_index do |statistic, index| %>
+    <div class="statistic_wrap">
+      <p class="pos">
+        <%= index + 1 %>.
+      </p>
+      <p class="true_answers">
+        <span><%= statistic.corrent_answer_count %></span> правельных из <%= statistic.questions_count %>
+      </p>
+      <p class="percent_true_answer">
+        <%= statistic.corrent_answer_percent.round(2) * 100 %>%
+      </p>
+      <p class="pass_ask">
+        <% if statistic.pass? %>
+          Тест пройден
+        <% else %>
+          Тест провален
+        <% end %>
+      </p>
+    </div>
   <% end %>
 <% else %>
   <p>Тестов по данному предмету не пройдено</p>

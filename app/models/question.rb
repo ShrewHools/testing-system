@@ -4,6 +4,8 @@ class Question < ApplicationRecord
   has_many :test_questions, dependent: :destroy
 
   validates :subject_id, presence: true
+  validates :theme, presence: true
+  validates :correct_answer, presence: true
 
   rails_admin do
     edit do
@@ -12,12 +14,15 @@ class Question < ApplicationRecord
       field :correct_answer
       field :correct_answer_variants, :pg_array
       field :incorrect_answer_variants, :pg_array
+      field :theme
+      field :literature
     end
     show do
       field :body
       field :correct_answer
       field :correct_answer_variants, :pg_array
-      field :incorrect_answer_variants, :pg_array
+      field :theme
+      field :literature
     end
   end
 end
