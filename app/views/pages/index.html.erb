@@ -1,14 +1,13 @@
 <section id="index-hello">
   <div class="center hero-unit">
-    <h1>Добро пожаловать в систему дистанционного тестирования</h1>
-    <h2> Тестирование будет доступено после регистрации/входа!</h2>
+    <h1>Добро пожаловать в систему дистанционного тестирования.</h1>
+    <h2>Тестирование будет доступно после регистрации/входа!</h2>
 
     <% if current_user %>
       <%= form_tag({ controller: 'test', action: 'create' }, method: 'post', class:'test_form') do %>
-        <p>Выбрать предмет тестирования(селектор)</p>
-        <!-- сделать селектор предмета-->
-        <%= hidden_field_tag(:subject_id, 4) %>
-        <%= submit_tag('Начать тестирование', class: '') %>
+        <%= collection_select(:test, :subject_id, Subject.all, :id, :name, { prompt: true }, { class: 'subject-selector' }) if Subject.any? %>
+        <!-- , data: { style: 'btn-success' } -->
+        <%= submit_tag('Начать тестирование', class: 'btn') %>
       <% end %>
     <% else %>
       <%= link_to 'Зарегистрироваться', new_user_registration_path, class: 'btn btn-large btn-primary' %>
