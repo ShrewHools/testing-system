@@ -1,8 +1,8 @@
 <section class="end_test">
   <% if statistic.pass? %>
     <div class="pass">
-      <h1>Тест <span>пройден</span>. Поздравляю!
-        <span class="green">
+      <h1>Тест <span class="color--green">пройден</span>. Поздравляю!
+        <span class="color--green">
           <%= statistic.corrent_answer_count %>
         </span>
         / <%= statistic.questions_count %>
@@ -23,8 +23,8 @@
     </div>
   <% else %>
     <div class="fail">
-      <h1>Тест <span>провален</span></h1>
-      <p><span><%= statistic.corrent_answer_count %></span> правельных из <%= statistic.questions_count %></p>
+      <h1>Тест <span class="color--red">провален</span></h1>
+      <p><span class="color--green"><%= statistic.corrent_answer_count %></span> правельных из <%= statistic.questions_count %></p>
       <p>Вы набрали <%= statistic.corrent_answer_percent.round(2) * 100 %>% из неободимых <%= statistic.need_answer_percent * 100 %>%</p>
 
       <% if incorrect_answers %>

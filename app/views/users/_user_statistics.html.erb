@@ -20,9 +20,9 @@
           <td><%= statistic.corrent_answer_percent.round(2) * 100 %></td>
           <td>
             <% if statistic.pass? %>
-              Пройден
+              <span class="color--green">Пройден</span>
             <% else %>
-              Провален
+              <span class="color--red">Провален</span>
             <% end %>
           </td>
           <td><%= statistic.created_at %></td>
