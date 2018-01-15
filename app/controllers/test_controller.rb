@@ -17,7 +17,7 @@ class TestController < ApplicationController
   end
 
   def create
-    subject = Subject.find_by(id: params[:subject_id])
+    subject = Subject.find_by(id: params[:test][:subject_id])
     if subject
       if current_user
         questions_count = subject.questions_count
