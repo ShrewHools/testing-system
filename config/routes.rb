@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root to: 'pages#index'
 
@@ -14,4 +13,8 @@ Rails.application.routes.draw do
   get '/users/:id/statistics', to: 'users#statistics', as: :statistics_user
   get '/users/statistic/:id', to: 'users#statistic'
   post '/users/subject_statistics', to: 'users#subject_statistics', as: :subject_statistics_user
+
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
 end
