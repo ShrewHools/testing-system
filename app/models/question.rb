@@ -10,7 +10,7 @@ class Question < ApplicationRecord
   rails_admin do
     edit do
       field :subject
-      field :body
+      field :body, :ck_editor
       field :correct_answer
       field :correct_answer_variants, :pg_array
       field :incorrect_answer_variants, :pg_array
