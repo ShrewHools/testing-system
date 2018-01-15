@@ -2,11 +2,13 @@
   <nav>
     <ul class="nav pull-left">
       <li><%= link_to 'Главная', root_path %></li>
+      <li><%= link_to 'Статистика', statistics_path %></li>
     </ul>
 
     <ul class="nav pull-right">
       <% if user_signed_in? %>
         <li class="hello-user"><%= current_user.email %></li>
+        <li><%= link_to 'Моя статистика', statistics_user_path(current_user) %></li>
         <li><%= link_to 'Редактировать профиль', edit_user_registration_path %></li>
         <li><%= link_to 'Выйти', destroy_user_session_path, :method => :delete %></li>
       <% else %>

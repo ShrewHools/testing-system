@@ -1,0 +1,36 @@
+<% if statistics.present? %>
+  <h1>Предмет - <%= statistics.first.subject.name %></h1>
+  <p>Последние 100 тестов сортированных по дате</p>
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Правельных ответов / всего</th>
+        <th scope="col">Качество, %</th>
+        <th scope="col">Тест</th>
+        <th scope="col">Дата прохождения</th>
+        <th scope="col">Отчеты</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% statistics.each_with_index do |statistic, index| %>
+        <tr>
+          <th scope="row"><%= index + 1 %>.</th>
+          <td><span><%= statistic.corrent_answer_count %></span> / <%= statistic.questions_count %></td>
+          <td><%= statistic.corrent_answer_percent.round(2) * 100 %></td>
+          <td>
+            <% if statistic.pass? %>
+              Пройден
+            <% else %>
+              Провален
+            <% end %>
+          </td>
+          <td><%= statistic.created_at %></td>
+          <td><%= link_to 'Смотреть отчет', statistic_user_path(id: statistic.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Тестов по данному предмету не пройдено</p>
+<% end %>

@@ -1,0 +1,10 @@
+<section class="all_statistics">
+  <h1>Рейтинг</h1>
+  <% @subjects.each do |subject| %>
+    <%= link_to subject.name, statistics_change_subject_path(subject_id: subject.id), method: :post, remote: true %>
+  <% end %>
+
+  <div class="ratings_wrap">
+    <%= render partial: 'statistics/ratings', locals: { sort_statistics: @sort_statistics, subject: @default_subject } %>
+  </div>
+</section>

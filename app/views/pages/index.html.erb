@@ -7,7 +7,7 @@
       <%= form_tag({ controller: 'test', action: 'create' }, method: 'post', class:'test_form') do %>
         <p>Выбрать предмет тестирования(селектор)</p>
         <!-- сделать селектор предмета-->
-        <%#= hidden_field_tag(:subject_id, 4) %>
+        <%= hidden_field_tag(:subject_id, 4) %>
         <%= submit_tag('Начать тестирование', class: '') %>
       <% end %>
     <% else %>

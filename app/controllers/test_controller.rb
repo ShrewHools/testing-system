@@ -2,10 +2,14 @@ class TestController < ApplicationController
   def index
     if current_user
       @current_test = current_user.tests.last
-      # вывести страницу окончания теста (типа результат + кнопка пройти ещё раз)
       if @current_test
-        @end_page = @current_test.end_page? if @current_test
-        @current_question = @current_test.questions[@current_test.last_question_number + 1]
+        if @current_test.end_page?
+          @statistic = @current_test.statistic
+          answers = @current_test.answers
+          @incorrect_answers = Answer.incorrect_answers(answers)
+        else
+          @current_question = @current_test.questions[@current_test.last_question_number + 1]
+        end
       end
     else
       redirect_to root_path
@@ -17,8 +21,7 @@ class TestController < ApplicationController
     if subject
       if current_user
         questions_count = subject.questions_count
-        # сделать выборку вопрос рандомно
-        test_questions = subject.questions.first(questions_count)
+        test_questions = subject.questions.order('RANDOM()').first(questions_count)
         if test_questions.count == questions_count
           test = current_user.tests.create(subject: subject)
           test.questions << test_questions
@@ -38,6 +41,7 @@ class TestController < ApplicationController
   end
 
   def next_step
+    create_answer if params[:answer]
     test = current_user.tests.last
     next_question_number = params[:last_question_number].to_i + 1
     next_question = test.questions[next_question_number] if test
@@ -45,9 +49,10 @@ class TestController < ApplicationController
       @current_test = test
       @current_question = next_question
     else
-      # конец теста
+      @statistic = test.statistic
+      answers = test.answers
+      @incorrect_answers = Answer.incorrect_answers(answers)
     end
-    create_answer if params[:answer]
     update_setting
   end
 
