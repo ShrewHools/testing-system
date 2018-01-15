@@ -5,7 +5,7 @@
 
   <div class="test-main">
     <% if @current_question %>
-      <%= render partial: 'test/question', locals: { current_test: @current_test, current_question: @current_question } %>
+      <%= render partial: 'test/question', locals: { current_test: @current_test, current_question: @current_question, current_subject: @current_subject } %>
     <% else %>
       <%= render partial: 'test/end_test', locals: { statistic: @statistic, incorrect_answers: @incorrect_answers } %>
     <% end %>
