@@ -1,4 +1,5 @@
 <%= form_tag({ controller: 'test', action: 'next_step' }, method: 'post', class: 'ni', remote: true) do %>
+  <div class="subject_name"><%= current_subject.name %></div>
   <%= hidden_field_tag(:last_question_number, current_test.questions.index(current_question)) %>
   <%= hidden_field_tag(:question_id, current_question.id) %>
   <%= hidden_field_tag(:test_id, current_test.id) %>

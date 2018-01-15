@@ -1,3 +1,47 @@
-// Place all the styles related to the Statistics controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.all_statistics {
+  .ratings_wrap {
+    .table {
+      width: 90%;
+      margin: 20px auto 40px;
+
+      thead {
+        th {
+          text-align: center;
+        }
+      }
+
+      tbody {
+        th {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+.user_statistics {
+  .statistic_wrap {
+    .table {
+      width: 90%;
+      margin: 20px auto 40px;
+
+      thead {
+        th {
+          text-align: center;
+        }
+      }
+
+      tbody {
+        th {
+          text-align: center;
+        }
+      }
+    }
+
+    .stat_info {
+      color: #28a745;
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 <% if @current_question %>
-  $(".test-main").html("<%= j render 'test/question', current_test: @current_test, current_question: @current_question %>");
+  $(".test-main").html("<%= j render 'test/question', current_test: @current_test, current_question: @current_question, current_subject: @current_subject %>");
   $('.input_answer').focus();
 <% else %>
   $(".test-main").html("<%= j render 'test/end_test', statistic: @statistic, incorrect_answers: @incorrect_answers %>");

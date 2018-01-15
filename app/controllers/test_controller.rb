@@ -8,6 +8,7 @@ class TestController < ApplicationController
           answers = @current_test.answers
           @incorrect_answers = Answer.incorrect_answers(answers)
         else
+          @current_subject = @current_test.subject
           @current_question = @current_test.questions[@current_test.last_question_number + 1]
         end
       end

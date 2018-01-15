@@ -1,7 +1,7 @@
 <% if statistics.present? %>
   <h1>Предмет - <%= statistics.first.subject.name %></h1>
   <p>Последние 100 тестов сортированных по дате</p>
-  <table class="table">
+  <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
         <th scope="col">#</th>
@@ -20,17 +20,17 @@
           <td><%= statistic.corrent_answer_percent.round(2) * 100 %></td>
           <td>
             <% if statistic.pass? %>
-              Пройден
+              <span class="color--green">Пройден</span>
             <% else %>
-              Провален
+              <span class="color--red">Провален</span>
             <% end %>
           </td>
-          <td><%= statistic.created_at %></td>
-          <td><%= link_to 'Смотреть отчет', statistic_user_path(id: statistic.id) %></td>
+          <td><%= statistic.created_at.strftime("%H:%M %F")  %></td>
+          <td><%= link_to 'Смотреть', statistic_user_path(id: statistic.id), class: 'btn btn-warning' %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
-  <p>Тестов по данному предмету не пройдено</p>
+  <p class="stat_info">Тестов по данному предмету не пройдено</p>
 <% end %>
