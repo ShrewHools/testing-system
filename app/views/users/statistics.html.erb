@@ -1,7 +1,7 @@
 <section class="user_statistics">
-  <h1>статистика</h1>
+  <h1>Моя статистика</h1>
   <% @subjects.each do |subject| %>
-    <%= link_to subject.name, subject_statistics_user_path(subject_id: subject.id), method: :post, remote: true %>
+    <%= link_to subject.name, subject_statistics_user_path(subject_id: subject.id), method: :post, remote: true, class: 'btn btn-info' %>
   <% end %>
 
   <div class="statistic_wrap">

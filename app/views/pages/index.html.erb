@@ -6,7 +6,6 @@
     <% if current_user %>
       <%= form_tag({ controller: 'test', action: 'create' }, method: 'post', class:'test_form') do %>
         <%= collection_select(:test, :subject_id, Subject.all, :id, :name, { prompt: true }, { class: 'subject-selector' }) if Subject.any? %>
-        <!-- , data: { style: 'btn-success' } -->
         <%= submit_tag('Начать тестирование', class: 'btn') %>
       <% end %>
     <% else %>
