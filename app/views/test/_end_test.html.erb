@@ -18,7 +18,7 @@
 
       <%= form_tag({ controller: 'test', action: 'create' }, method: 'post', class:'test_form') do %>
         <%= hidden_field_tag('test[subject_id]', statistic.test.subject_id) %>
-        <%= submit_tag('Пройти тест ещё раз', class: '') %>
+        <%= submit_tag('Пройти тест ещё раз', class: 'btn btn-success') %>
       <% end %>
     </div>
   <% else %>
@@ -41,7 +41,7 @@
 
       <%= form_tag({ controller: 'test', action: 'create' }, method: 'post', class:'test_form') do %>
         <%= hidden_field_tag('test[subject_id]', statistic.test.subject_id) %>
-        <%= submit_tag('Пройти тест ещё раз', class: '') %>
+        <%= submit_tag('Пройти тест ещё раз', class: 'btn btn-success') %>
       <% end %>
     </div>
   <% end %>
