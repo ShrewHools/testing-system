@@ -19,8 +19,12 @@
   <% else %>
     <div class="fail">
       <h1>Тест <span class="color--red">провален</span></h1>
-      <p><span class="color--green"><%= @statistic.corrent_answer_count %></span> правельных из <%= @statistic.questions_count %></p>
-      <p>Вы набрали <%= @statistic.corrent_answer_percent.round(2) * 100 %>% из неободимых <%= @statistic.need_answer_percent * 100 %>%</p>
+      <p>Вы набрали <%= @statistic.corrent_answer_percent.round(2) * 100 %>% из неободимых <%= @statistic.need_answer_percent * 100 %>%.
+        <span class="color--green">
+          <%= @statistic.corrent_answer_count %>
+        </span> правельных из
+        <%= @statistic.questions_count %>
+      </p>
 
       <% if @incorrect_answers.present? %>
         <h2>Повторите следующие темы:</h2>

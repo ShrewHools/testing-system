@@ -25,9 +25,24 @@ html {
 
 body {
   background-color: #333;
-  margin-bottom: 125px;
-  color: #337ab7;
+  padding-bottom: 120px;
+  min-height: 100vh;
+  color: #fff;
   text-align: center;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5);
+
+  &:after {
+    content: "";
+    background-image: asset-url("3.jpg");
+    background-size: cover;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+  }
 }
 
 // header

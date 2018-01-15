@@ -1,8 +1,13 @@
 .all_statistics {
   .ratings_wrap {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px 20px;
+    margin-top: 20px;
+
     .table {
       width: 90%;
       margin: 20px auto 40px;
+      background-color: rgba(0, 0, 0, 0.6);
 
       thead {
         th {
@@ -24,6 +29,7 @@
     .table {
       width: 90%;
       margin: 20px auto 40px;
+      background-color: rgba(0, 0, 0, 0.6);
 
       thead {
         th {
@@ -39,9 +45,14 @@
     }
 
     .stat_info {
-      color: #28a745;
+      color: #ffc107;
       margin-top: 20px;
       font-size: 20px;
     }
   }
+}
+
+.user_statistic {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px 20px;
 }

@@ -49,6 +49,7 @@ class TestController < ApplicationController
     if next_question
       @current_test = test
       @current_question = next_question
+      @current_subject = @current_test.subject
     else
       @statistic = test.statistic
       answers = test.answers
