@@ -21,8 +21,7 @@ class TestController < ApplicationController
     if subject
       if current_user
         questions_count = subject.questions_count
-        # сделать выборку вопрос рандомно
-        test_questions = subject.questions.first(questions_count)
+        test_questions = subject.questions.order('RANDOM()').first(questions_count)
         if test_questions.count == questions_count
           test = current_user.tests.create(subject: subject)
           test.questions << test_questions
