@@ -22,7 +22,10 @@ gem 'rails_admin', '~> 1.2'
 gem 'devise'
 gem 'cancancan'
 gem 'rolify'
+
 gem 'ckeditor'
+gem 'carrierwave'
+gem 'mini_magick'
 
 gem 'rubocop'
 

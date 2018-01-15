@@ -4,7 +4,7 @@
   <%= hidden_field_tag(:question_id, current_question.id) %>
   <%= hidden_field_tag(:test_id, current_test.id) %>
   <div class="question_wrap">
-    <h1>Body - <%= @current_question.body %></h1>
+    <h1><%= @current_question.body&.html_safe %></h1>
   </div>
   <div class="answer_wrapper">
     <div class="input_block">
