@@ -4,6 +4,18 @@ class Statistic < ApplicationRecord
   belongs_to :subject
 
   rails_admin do
+    configure :full_name do
+      formatted_value do
+          value
+      end
+    end
+
+    configure :subject_name do
+      formatted_value do
+          value
+      end
+    end
+
     edit do
       field :user
       field :questions_count
@@ -12,6 +24,7 @@ class Statistic < ApplicationRecord
       field :need_answer_percent
       field :pass
       field :subject
+      field :group
     end
     show do
       field :subject
@@ -22,6 +35,24 @@ class Statistic < ApplicationRecord
       field :need_answer_percent
       field :pass
     end
+    export do
+      field :full_name
+      field :pass
+      field :corrent_answer_percent
+      field :corrent_answer_count
+      field :questions_count
+      field :group
+      field :subject_name
+      field :created_at
+    end
+  end
+
+  def full_name
+    user.full_name
+  end
+
+  def subject_name
+    subject.name
   end
 
   def self.rating(subject)
