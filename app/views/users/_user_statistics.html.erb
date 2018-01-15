@@ -25,12 +25,12 @@
               <span class="color--red">Провален</span>
             <% end %>
           </td>
-          <td><%= statistic.created_at %></td>
+          <td><%= statistic.created_at.strftime("%H:%M %F")  %></td>
           <td><%= link_to 'Смотреть', statistic_user_path(id: statistic.id), class: 'btn btn-warning' %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
-  <p>Тестов по данному предмету не пройдено</p>
+  <p class="stat_info">Тестов по данному предмету не пройдено</p>
 <% end %>
