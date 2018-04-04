@@ -6,7 +6,7 @@
     <% if current_user %>
       <%= form_tag({ controller: 'test', action: 'create' }, method: 'post', class:'test_form') do %>
         <%= collection_select(:test, :subject_id, Subject.all, :id, :name, { prompt: true }, { class: 'subject-selector' }) if Subject.any? %>
-        <%= submit_tag('Начать тестирование', class: 'btn') %>
+        <%= submit_tag('Начать тестирование', class: 'btn btn-st') %>
       <% end %>
     <% else %>
       <%= link_to 'Зарегистрироваться', new_user_registration_path, class: 'btn btn-large btn-primary' %>
