@@ -69,9 +69,10 @@ class Statistic < ApplicationRecord
         max_persent = user_stat.corrent_answer_percent if user_stat.corrent_answer_percent > max_persent
       end
       user_full_name = user_stats.first.user.full_name
+      group_number = user_stats.first.user.group
       avg_persent = (avg_persent / stat_count * 100).round(2)
       max_persent = (max_persent * 100).round(2)
-      user_rating = { full_name: user_full_name, avg_persent: avg_persent, max_persent: max_persent }
+      user_rating = { full_name: user_full_name, group_number: group_number, avg_persent: avg_persent, max_persent: max_persent }
       ratings << user_rating
     end
     sort_ratings = ratings.sort_by { |rating| rating[:avg_persent] }.reverse

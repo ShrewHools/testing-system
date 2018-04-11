@@ -12,7 +12,12 @@
       <% if @incorrect_answers.present? %>
         <h2>Повторите следующие темы:</h2>
         <% @incorrect_answers.each do |incorrect_answer| %>
-          <p><%= incorrect_answer.answer %></p>
+          <p>
+            Тема - <%= incorrect_answer.question.theme %>.
+            <% if incorrect_answer.question.literature.present? %>
+              Литература - <%= incorrect_answer.question.literature %>
+            <% end %>
+          </p>
         <% end %>
       <% end %>
     </div>
@@ -22,7 +27,7 @@
       <p>Вы набрали <%= @statistic.corrent_answer_percent.round(2) * 100 %>% из неободимых <%= @statistic.need_answer_percent * 100 %>%.
         <span class="color--green">
           <%= @statistic.corrent_answer_count %>
-        </span> правельных из
+        </span> правильных из
         <%= @statistic.questions_count %>
       </p>
 

@@ -104,11 +104,15 @@ footer {
       }
     }
 
-
-
-    .btn {
+    .btn-st {
       margin-top: 20px;
       font-size: 20px;
+      color: #000;
+
+      &:hover {
+        color: #fff;
+        background-color: #000;
+      }
     }
   }
 }

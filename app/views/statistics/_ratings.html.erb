@@ -6,8 +6,9 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">ФИО</th>
-        <th scope="col">Средний % правельных ответов</th>
-        <th scope="col">Лучший результат, %</th>
+        <th scope="col">Группа</th>
+        <th scope="col">Среднее качество ответов</th>
+        <th scope="col">Лучший результат</th>
       </tr>
     </thead>
     <tbody>
@@ -15,6 +16,7 @@
         <tr>
           <th scope="row"><%= index + 1 %>.</th>
           <td><%= stat[:full_name] %></td>
+          <td><%= stat[:group_number] %></td>
           <td><%= stat[:avg_persent] %>%</td>
           <td><%= stat[:max_persent] %>%</td>
         </tr>
